@@ -4,21 +4,34 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
+    constructor(props) {
+        super(props)
+        this.state = {
+            num: this.getRandom()
+        }
 
-    function changeNum() {
-        console.log(Math.floor(Math.random() * 1000))
+        this.changeNum = this.changeNum.bind(this)
     }
 
-    return (
-        <div className = "App">
-            <header className = "App-header">
-                <img src = { logo } className = "App-logo" alt = "logo" onClick={this.changeNum} />
-                <p>{ Math.floor(Math.random() * 1000) }</ p>
-            </ header>
-        </div>
-    );
-  }
+
+    getRandom() {
+        return Math.floor(Math.random() * 1000)
+    }
+    
+    changeNum() {
+        console.log(this.getRandom())
+    }
+  
+    render() {
+        return (
+            <div className = "App">
+                <header className = "App-header">
+                    <img src = { logo } className = "App-logo" alt = "logo" />
+                    <p onClick={this.changeNum}>{ this.state.num }</ p>
+                </ header>
+            </div>
+        );
+    }
 }
 
 export default App;
