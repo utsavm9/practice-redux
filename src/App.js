@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Num from './randNum'
+
 
 class App extends Component {
     constructor(props) {
@@ -20,13 +22,20 @@ class App extends Component {
     changeNum() {
         console.log(this.getRandom())
     }
+
+    changeState = () => {
+        console.log(this.state)
+        this.setState({
+            num: this.getRandom(),
+        })
+    }
   
     render() {
         return (
-            <div className = "App">
+            <div className = "App" onClick={this.changeState}>
                 <header className = "App-header">
-                    <img src = { logo } className = "App-logo" alt = "logo" />
-                    <p onClick={this.changeNum}>{ this.state.num }</ p>
+                    <img src = { logo } className = "App-logo" alt = "logo" onClick={this.changeState} />
+                    <Num number={this.state.num} handleClick={this.changeNum}/>
                 </ header>
             </div>
         );
