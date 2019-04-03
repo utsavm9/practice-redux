@@ -1,6 +1,8 @@
-const merge = (part1, part2) => Object.assign({}, part1, part2)
-const reducer = (state, update) => merge(state, update)
+//Action types
+const ADD_FIELD = 'ADD_FIELD'
+const INCREMENT = 'INCREMENT'
 
+//Store
 class Store {
     constructor(reducer, initialState) {
         this.reducer = reducer
@@ -10,12 +12,40 @@ class Store {
     getState() {
         return this.state
     }
+
+    dispatch(update) {
+        this.state = this.reducer(this.state, update)
+    }
+}
+
+//Reducers
+const merge = (part1, part2) => Object.assign({}, part1, part2)
+const addField = (state, update) => merge(state, update)
+const incrementNum = (state) => { return {
+        ...state,
+        num: ((state.num) ? state.num + 1 : 1 ),
+    }
+}
+
+const reducer = (store, action) => {
+    if (action.type === ADD_FIELD) {
+        return addField(store, action.payload)
+    }
+    if (action.type === INCREMENT) {
+        return incrementNum(store)
+    }
 }
 
 
+// Using the Redux
 const store = new Store(reducer, {name: 'Utsavi'})
+store.dispatch({
+    type: ADD_FIELD, 
+    payload: {age: 18}
+})
+store.dispatch({type: INCREMENT})
+store.dispatch({type: INCREMENT})
+store.dispatch({type: INCREMENT})
+store.dispatch({type: INCREMENT})
 
-//state = reducer(state, {name: 'Utsavi'})
-//state = reducer(state, {age: '18'})
-//state = reducer(state, {name: 'Utsav'})
-console.log(store.getState())
+console.log(store.getState())   
