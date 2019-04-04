@@ -48,4 +48,4 @@ store.dispatch({type: INCREMENT})
 store.dispatch({type: INCREMENT})
 store.dispatch({type: INCREMENT})
 
-console.log(store.getState())   
+console.log(store.getState());
