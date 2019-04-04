@@ -1,6 +1,6 @@
-//import { createStore, combineReducers } from 'redux'
-const {combineReducers} = require('redux')   // For running this JS file in Node
-const {UPDATE_USER, INCREMENT} = require('./actions')
+import { createStore, combineReducers } from 'redux'
+//const {combineReducers} = require('redux')   // For running this JS file in Node
+import {UPDATE_USER, INCREMENT} from './actions'
 
 //Reducers
 const userReducer = (stateUserField = '', action) => {
@@ -24,5 +24,5 @@ const reducer = combineReducers({
     num: numReducer,
 })
 
-modules.export = reducer
+export default reducer
 //Could have done export default combineReducer({...}) for compactness
